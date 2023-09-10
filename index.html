@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Скачать Java игры</title>
+    <style>
+        /* Добавьте стили для красивого дизайна */
+        @font-face {
+            font-family: 'iOS 15 Bold';
+            src: url('fonts/iOS15-Bold.ttf') format('truetype');
+            font-style: normal;
+        }
+        body {
+            font-family: "iOS 15 Bold", Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .game-card {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .game-card h2 {
+            margin-top: 0;
+        }
+
+        .game-card p {
+            margin-bottom: 10px;
+        }
+
+        .download-button,
+        .details-button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 10px; /* Увеличенное расстояние между кнопками */
+        }
+
+        .details-button {
+            margin-right: 0; /* Убираем правый отступ у кнопки "Подробнее" */
+        }
+
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Скачать Java игры</h1>
+
+    <input type="text" id="searchInput" class="search-input" placeholder="Поиск...">
+
+    <div id="gameList">
+        <!-- Здесь будут отображаться карточки игр -->
+    </div>
+
+    <script>
+        // Добавьте список игр
+        var games = [
+            {
+                title: "FIFA 12",
+                description: "Описание FIFA 12",
+                size: "100 MB",
+                downloadLink: "download/FIFA 12.jar",
+                detailsLink: "games details/fifa12_details.html"
+            },
+            {
+                title: "Gangstar 2",
+                description: "Описание Gangstar 2",
+                size: "150 MB",
+                downloadLink: "ссылка на скачивание Gangstar 2",
+                detailsLink: "games details/gangstar2_details.html"
+            },
+            {
+                title: "GTA",
+                description: "Описание GTA",
+                size: "200 MB",
+                downloadLink: "gta.jar",
+                detailsLink: "games details/gta_details.html"
+            },
+            {
+                title: "Mafia",
+                description: "Описание Mafia",
+                size: "120 MB",
+                downloadLink: "ссылка на скачивание Mafia",
+                detailsLink: "games details/mafia_details.html"
+            },
+            {
+                title: "Assassins Creed 2",
+                description: "Отправляйтесь на задания убийцы и исследуйте потрясающий открытый мир!",
+                size: "844 KB",
+                downloadLink: "download/Assassins Creed 2.jar",
+                detailsLink: "games details/assassinscreed2_details.html"
+            }
+        ];
+
+        var gameList = document.getElementById("gameList");
+        var searchInput = document.getElementById("searchInput");
+
+        // Функция для отображения карточек игр
+        function displayGames() {
+            gameList.innerHTML = "";
+
+            var searchTerm = searchInput.value.toLowerCase();
+
+            games.forEach(function(game) {
+                if (game.title.toLowerCase().includes(searchTerm)) {
+                    var gameCard = document.createElement("div");
+                    gameCard.classList.add("game-card");
+
+                    var title = document.createElement("h2");
+                    title.textContent = game.title;
+
+                    var description = document.createElement("p");
+                    description.textContent = game.description;
+
+                    var size = document.createElement("p");
+                    size.textContent = "Размер: " + game.size;
+
+                    var downloadButton = document.createElement("a");
+                    downloadButton.classList.add("download-button");
+                    downloadButton.textContent = "Скачать";
+                    downloadButton.href = game.downloadLink;
+
+                    var detailsButton = document.createElement("a");
+                    detailsButton.classList.add("details-button");
+                    detailsButton.textContent = "Подробнее";
+                    detailsButton.href = game.detailsLink;
+
+                    gameCard.appendChild(title);
+                    gameCard.appendChild(description);
+                    gameCard.appendChild(size);
+                    gameCard.appendChild(downloadButton);
+                    gameCard.appendChild(detailsButton);
+
+                    gameList.appendChild(gameCard);
+                }
+            });
+        }
+
+        // Обновление списка игр при изменении значения в поле поиска
+        searchInput.addEventListener("input", displayGames);
+
+        // Инициализация отображения игр
+        displayGames();
+    </script>
+</body>
+</html>
